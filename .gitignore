@@ -3,4 +3,4 @@
 
 # Ignore node_modules directory in the server directory
 /server/node_modules/
-/server/.env
+/server/.en

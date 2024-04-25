@@ -5,17 +5,17 @@ const multer = require('multer');
 const { spawn } = require('child_process');
 
 const app = express();
-const corsOptions = {
-    origin: `https://${process.env.ANGULAR_KEY||'*'}`,
-     // Update with your Angular app URL
-    optionsSuccessStatus: 200,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,            // enable set cookie
-    allowedHeaders: "*"
-};
+// const corsOptions = {
+//     origin: `https://${process.env.ANGULAR_KEY||'*'}`,
+//      // Update with your Angular app URL
+//     optionsSuccessStatus: 200,
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,            // enable set cookie
+//     allowedHeaders: "*"
+// };
 
 app.use(cors());
-app.options('*', cors(corsOptions));
+//app.options('*', cors(corsOptions));
 app.use(express.json());
 
 app.post('/api/control', async (req, res) => {
