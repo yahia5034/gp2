@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row flex-nowrap">
+        <div class="text-white">
+            <div class="d-flex flex-column justify-content-between align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <div>
+                    <ul style="width:100%;" class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li style="width:100%;" class="nav-item">
+                            <a (click)="gotohome()"   class="nav-link align-middle px-0" style="cursor:pointer;">
+                                <i class="fa fa-home text-white"></i> <span class="ms-1 d-none d-sm-inline text-white">Home</span>
+                            </a>
+                        </li>
+                        <li  style="width:100%;" class="nav-item">
+                            <a (click)="gotomessage()" class="nav-link px-0 align-middle" style="cursor:pointer;">
+                                <i class="fa fa-envelope-o text-white"  ></i> <span class="ms-1 d-none d-sm-inline text-white">Messages</span></a>
+                        </li>
+                        <li style="width:100%;"  class="nav-item">
+                          <a (click)="getlocation()"  class="nav-link px-0 align-middle" style="cursor:pointer;">
+                              <i class="fa fa-map-marker text-white"  ></i> <span class="ms-1 d-none d-sm-inline text-white">Track location</span></a>
+                      </li>
+                      <li (click)="logout()" style="width:10%;position: fixed; bottom:10px;"  class="nav-item">
+                        <a>  <span class="ms-1  d-sm-block nav-link px-0 align-middle text-white"><i style="height:15px;" class="fa fa-sign-out text-white" ></i> Logout</span></a>
+                    </li>
+                    </ul>
+                </div>
+            
+                <hr>
+            </div>
+        </div>
+        
+    </div>
+</div>

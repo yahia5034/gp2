@@ -1,0 +1,92 @@
+<div class="wrapper">
+    <div class="title-text">
+      <div class="title login">Login Form</div>
+      <div class="title signup">Signup Form</div>
+    </div>
+    <div class="form-container">
+      <div class="slide-controls">
+        <input type="radio" name="slide" id="login" checked />
+        <input type="radio" name="slide" id="signup" />
+        <label for="login" (click)="loginfun()" class="slide login">Login</label>
+        <label for="signup" (click)="signfun()" class="slide signup"
+          >Signup</label
+        >
+        <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+        <form class="login" #form="ngForm" (ngSubmit)="onSubmit(form)">
+          <div *ngIf="login == false" class="field">
+            <input
+              type="text"
+              placeholder="userName"
+              name="username"
+              #username="ngModel"
+              ngModel
+              required
+            />
+          </div>
+          <div class="field">
+            <input
+              type="text"
+              placeholder="Email Address"
+              name="email"
+              Email
+              #email="ngModel"
+              ngModel
+              required
+            />
+            <p style="color: red" *ngIf="email.touched && !email.valid">
+              Please enter a valid email!
+            </p>
+          </div>
+          <div *ngIf="login == false" class="field">
+            <input
+              type="text"
+              placeholder="Phone Number"
+              name="phonenumber"
+              #phonenumber="ngModel"
+              ngModel
+              required
+            />
+          </div>
+          <div class="field">
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              #password="ngModel"
+              ngModel
+              required
+            />
+          </div>
+          <div
+            *ngIf="login == true"
+            style="margin-top: 85px; margin-left: 6px"
+            class=""
+          >
+            <input type="checkbox" id="checkbox" #checkbox />
+            <label style="margin-left: 5px" for="checkbox"
+              >Login as a guard</label
+            >
+          </div>
+          <div>
+            <button
+              [disabled]="!form.valid"
+              *ngIf="login == true"
+              class="btn btn-primary"
+            >
+              Login
+            </button>
+            <button
+              [disabled]="!form.valid"
+              *ngIf="login == false"
+              class="btn btn-primary"
+            >
+              signup
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

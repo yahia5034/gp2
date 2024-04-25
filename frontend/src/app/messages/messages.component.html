@@ -1,0 +1,12 @@
+<div class="message-box " *ngFor="let message of messages,let i=index">
+  <div *ngIf="i < 4"  class="message sender1">
+    <p class="sender-name">User</p>
+    <div class="message-text d-flex justify-content-between">
+      <p>{{ message.result }}</p>
+      <p>  {{ message.time  }} -- {{message.date}}</p>
+    </div>
+  </div>
+  </div>
+ 
+  
+  

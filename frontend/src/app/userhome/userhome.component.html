@@ -1,0 +1,100 @@
+<nav class="navbar navbar-expand-lg text-white py-3">
+    <div class="container">
+      <a style="cursor: pointer" class="navbar-brand text-white">Blindess Assistance </a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navmenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navmenu" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto d-flex">
+          <li class="nav-item">
+            <a class="nav-link text-white" style="cursor: pointer" (click)="addguardfunc()">Add Guard</a>
+          </li>
+          <li (click)="logout()" style="width:10%; bottom:10px; cursor: pointer"class="nav-item">
+            <a>  <span class="ms-5  d-sm-block nav-link px-0 align-middle text-white">Logout</span></a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container d-flex flex-column flex-sm-column flex-md-row">
+    <div class="card w-sm-100 w-md-50 p-3">
+      <div class="ratio ratio-1x1">
+        <div id="map"  class="h-100 h-sm-250 h-md-400" style="width: 100%;"></div>
+        <script *ngIf="mapscalled == true" async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrdv2-Yq-YSoYMHVdPY-murMwmhrbS7bs&callback=initMap"></script>
+      </div>
+    </div>
+    <button style="
+        border-radius: 40px;
+        height: 80px;
+        width: 160px;
+        margin: 20px;
+        margin-top:30px;
+        color: white;
+        background: -webkit-linear-gradient(
+          left,
+          #003366,
+          #004080,
+          #0059b3,
+          #0073e6
+        );
+      " #startBtn id="startBtn" (click)="startRecognition()" class="btn btn-info text-center">
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic"
+          viewBox="0 0 16 16">
+          <path
+            d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5" />
+          <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3" />
+        </svg></span>
+      Start
+    </button>
+    <div class="card w-sm-100 w-md-40 p-3">
+      <div class="card-body">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  
+        <div class="container chat-container">
+          <div class="row clearfix">
+            <div class="col-sm-12" style="width: 100%">
+              <div class="card chat-app">
+                <div class="chat-header clearfix">
+                  <div class="row">
+                    <div class="col-sm-4 col-12 d-flex">
+                      <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                        <img style="width: 40px" src="../../assets/google-gemini-icon.webp" alt="avatar" />
+                      </a>
+                      <div class="chat-about">
+                        <h6 class="m-b-0">Gemini AI</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-history">
+                  <ul style="list-style-type: none" class="m-b-0">
+                    <li class="clearfix" style="text-decoration: none">
+                      <img style="width: 40px; position: absolute; right: 30px" src="../../assets/user.png"
+                        alt="avatar" />
+                      <div class="message-data text-right"></div>
+                      <div #output style="margin-top: 60px" class="message other-message float-right"></div>
+                    </li>
+                    <li class="clearfix">
+                      <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                        <img style="width: 70px" src="../../assets/Google_Ai_Gemini.png" alt="avatar" />
+                      </a>
+                      <div class="message-data"></div>
+                      <div class="message my-message" #Result></div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div #output></div>
+        <br>
+        <div #Result></div> -->
+        <input hidden type="file" #imageInput accept="image/*">
+        <button (click)="onSubmit()" hidden type="submit" #submitButton style="display:none">Upload</button>
+        

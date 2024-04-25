@@ -1,0 +1,16 @@
+.collapse :hover{
+    background-color: #e7e7e7;
+    border-radius:8px;
+    height:40px;
+}
+.navbar{
+    position:fixed;
+    top:0;
+    background:  -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+    width:100%;
+}
+
+.navbar-nav{
+    width:100px;
+    
+}

@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><div 
+class="container">
+  <div class="overlay d-none d-md-block" id="overlay">
+    <div class="sign-in" id="sign-in">
+      <h1>Welcome Back!</h1>
+      <p>Welcome back! Adding a guard helps keep you safe and secure.
+      </p>
+      <button (click)="backtomain()" class="switch-button" id="slide-right-button"><span><i style="height:15px; font-size: 20px; margin-right:3px;" class="fa fa-arrow-left"></i></span>Back</button>
+    </div>
+    <div class="sign-up" id="sign-up">
+      <h1>Hello, Friend!</h1>
+      <p>Enter your personal details and start a journey with us</p>
+      <button class="switch-button" id="slide-left-button">Sign Up</button>
+    </div>
+  </div>
+  <div class="form">
+    <div class="sign-in" id="sign-in-info">
+      <h1><i style="height:15px; font-size: 36px;" class="fa fa-arrow-left"></i> Back</h1>
+      <p class="small">or use your email account:</p>
+      <!-- <form id="sign-in-form">      
+          <input type="email" placeholder="Email"/>
+          <input type="password" placeholder="Password"/>
+          <p class="forgot-password">Forgot your password?</p>
+          <button class="control-button in">Sign In</button>
+        </form> -->
+    </div>
+    <div class="sign-up" id="sign-up-info">
+      <h1>Create Account</h1>
+      <form id="sign-up-form" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+        <input
+          type="text"
+          placeholder="Name"
+          name="username"
+          required
+          ngModel
+          #name="ngModel"
+        />
+        <input
+          type="email"
+          Email
+          placeholder="Email"
+          name="email"
+          ngModel
+          #email="ngModel"
+          required
+        />
+        <input
+          placeholder="PhoneNumber"
+          name="number"
+          required
+          ngModel
+          #phonenumber="ngModel"
+        />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          ngModel
+          #password="ngModel"
+          required
+        />
+        <button class="control-button up" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+</div>

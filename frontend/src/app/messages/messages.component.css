@@ -1,0 +1,42 @@
+.message-box {
+    margin-bottom: 10px;
+    margin-top:70px;
+  }
+  
+  .message {
+    max-width: 70%;
+    margin-bottom: 10px;
+  }
+  
+  .message .sender-name {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .message .message-text {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+  
+  .sender1 .message-text {
+    background-color: #0073e6;
+    text-align: left;
+    color:white;
+  }
+  
+  .sender2 .message-text {
+    background-color: #EAEAEA;
+    text-align: right;
+  }
+  .custom-primary {/* Adjust the color code to your desired darker shade */
+    border-color: #003366; /* Adjust the border color to match the background */
+  }
+
+  .custom-primary:hover,
+  .custom-primary:focus {
+    background-color: #003366; /* Adjust the color code to your desired darker shade on hover/focus */
+    border-color: #003366 /* Adjust the border color on hover/focus */
+  }

@@ -1,0 +1,3 @@
+[build]
+  publish = "dist/gp2"
+  command = "ng build --prod"

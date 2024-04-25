@@ -1,0 +1,9 @@
+.nav-link:hover {background-color: #e7e7e7;}
+
+.container{
+    margin-top:70px;
+    position: fixed;
+    left:0;
+    background:  -webkit-linear-gradient(top, #003366, #004080, #0059b3, #0073e6);
+    width:15%;
+}

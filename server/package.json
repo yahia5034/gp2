@@ -1,0 +1,22 @@
+{
+    "orgId": "team_zTx3TOQq7i8HKIfkxEmrOr2Z",
+    "projectId": "prj_INTKTrL5VAHSAqTiz6kfeIW5ymUK",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@google-cloud/speech": "^6.4.0",
+        "@google-cloud/text-to-speech": "^5.2.0",
+        "@google/generative-ai": "^0.3.1",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2",
+        "multer": "^1.4.5-lts.1",
+        "openai": "^4.31.0"
+    }
+}
