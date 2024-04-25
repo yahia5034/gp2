@@ -3,16 +3,11 @@
   "lockfileVersion": 3,
   "requires": true,
   "packages": {},
-  "engines":{
-    "node":">=18 <19"
+  "engines": {
+    "node": ">=18 <19"
   },
-  "scripts":{
-    "prebuild":"cd server && npm run dev",
-    "build":"cd frontend && npm run start"
-  },
-  "dependencies": {
-    "@google-cloud/speech": "^6.4.0",
-    "@google-cloud/text-to-speech": "^5.2.0",
-    "@google/generative-ai": "^0.3.1"
+  "scripts": {
+    "prebuild": "cd server && npm run dev",
+    "build": "cd frontend && npm run start"
   }
 }
