@@ -6,16 +6,16 @@ const cors = require('cors');
 const app = express();
 
 // CORS Configuration
-const corsOptions = {
-    origin: `https://${proccess.env.ANGULAR_KEY}`, // Update with your Angular app URL
-    optionsSuccessStatus: 200,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,            // enable set cookie
-    allowedHeaders: "Content-Type, Authorization"
-};
+// const corsOptions = {
+//     origin: `https://${proccess.env.ANGULAR_KEY}`, // Update with your Angular app URL
+//     optionsSuccessStatus: 200,
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,            // enable set cookie
+//     allowedHeaders: "Content-Type, Authorization"
+// };
 
 app.use(cors());
-app.options('*', cors(corsOptions));
+// app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Multer configuration for handling file uploads
