@@ -83,7 +83,9 @@ app.post('/upload', upload.single('image'), (req, res) => {
         console.log(`child process exited with code ${code}`);
     });
 });
-
+app.get('/',(req,res)=>{
+    res.send("<h1>HElloo to server<h1/>")
+})
 app.listen(process.env.PORT || 3002, function () {
     console.log("connected");
   });
