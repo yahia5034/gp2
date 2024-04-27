@@ -29,7 +29,7 @@ app.post('/api/control', async (req, res) => {
         case "find": 
     // Option 1: Using URL object (more readable)
             console.log("Calling raspberry pi API");
-            const apiUrl = new URL('http://192.168.137.223:8080/api/control'); // Assuming your internal API is http (change to https if necessary)
+            const apiUrl = new URL('192.168.137.223:8080/api/control'); // Assuming your internal API is http (change to https if necessary)
 
             // Option 2: Using string concatenation (more concise)
             // const apiUrl = 'http://192.168.1.13:8080/api/control';
