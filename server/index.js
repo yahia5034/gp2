@@ -113,7 +113,7 @@ const storage=multer.diskStorage({
 })
 const upload= multer({storage:storage});
 
-app.post('/api/upload',upload.single('uploadedImage'),(req,res)=>{
+app.post('/upload',upload.single('uploadedImage'),(req,res)=>{
     console.log(req.file);
 
     try{
