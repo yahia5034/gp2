@@ -30,10 +30,10 @@ app.post('/api/control', async (req, res) => {
         case "find": 
     // Option 1: Using URL object (more readable)
             console.log("Calling raspberry pi API");
-            const apiUrl = new URL('192.168.137.223:8080/api/control'); // Assuming your internal API is http (change to https if necessary)
+            const apiUrl = new URL('http://192.168.137.223:8080/api/control'); // Assuming your internal API is http (change to https if necessary)
 
             // Option 2: Using string concatenation (more concise)
-            // const apiUrl = 'http://192.168.1.13:8080/api/control';
+            //const apiUrl = 'http://192.168.137.223:8080/api/control';
 
             const postData = JSON.stringify({ message }); // Prepare data to send
 
@@ -45,7 +45,8 @@ app.post('/api/control', async (req, res) => {
                 headers: {
                     'Content-Type': 'application/json', // Set appropriate header
                     'Content-Length': postData.length
-                }
+                },
+                minVersion: 'TLSv1'
             };
 
             const req2 = https.request(options, (response) => {
@@ -113,25 +114,23 @@ const storage=multer.diskStorage({
 })
 const upload= multer({storage:storage});
 
-app.post('/upload',upload.single('uploadedImage'),(req,res)=>{
+app.post('/upload', upload.single('image'), (req, res) => {
     console.log(req.file);
 
-    try{
+    try {
         Tesseract.recognize(
-            'uploads/'+req.file.filename,
+            'uploads/' + req.file.filename,
             'eng',
-            {logger:m =>console.log(m)}
-        ).then(({data:{text}})=>{
-            return res.json(
-                {
-                    message:text
-                }
-            )
-        })          
-    }catch(error){
-        console.error(error)
+            { logger: m => console.log(m) }
+        ).then(({ data: { text } }) => {
+            return res.json({
+                text: text
+            });
+        });
+    } catch (error) {
+        console.error(error);
     }
- })
+});
 app.get('/',(req,res)=>{
     res.send("<h1>HElloo to server<h1/>")
 })
