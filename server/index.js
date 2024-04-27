@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require("cors");
 const multer = require('multer');
 const { spawn } = require('child_process');
+const https = require('https')
 
 const app = express();
 // const corsOptions = {
@@ -19,16 +20,72 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/api/control', async (req, res) => {
-    try {
-        console.log(req.body);
-        const message = req.body.message;
-        const result = await run(message);
-        console.log('Received message:', message);
-        console.log(result);
-        res.json({ message: result });
-    } catch (error) {
-        console.error("Error occurred in API control endpoint:", error);
-        res.status(500).json({ error: "Internal server error" });
+    const msg= req.body.message;
+    switch(msg){
+        case "describe":
+        case "map":
+        case "lidar":
+        case "find": 
+    /*New Area*/
+    // Option 1: Using URL object (more readable)
+            const apiUrl = new URL('http://192.168.137.223:8080/api/control'); // Assuming your internal API is http (change to https if necessary)
+
+            // Option 2: Using string concatenation (more concise)
+            // const apiUrl = 'http://192.168.1.13:8080/api/control';
+
+            const postData = JSON.stringify({ message }); // Prepare data to send
+
+            const options = {
+            hostname: apiUrl.hostname,
+            port: apiUrl.port,
+            path: apiUrl.pathname,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json', // Set appropriate header
+                'Content-Length': postData.length
+            }
+            };
+
+            const req2 = https.request(options, (response) => {
+            let responseData = '';
+            response.on('data', (chunk) => {
+                responseData += chunk;
+            });
+
+            response.on('end', () => {
+                try {
+                const result = JSON.parse(responseData);
+                console.log('Received message:', message);
+                console.log(result);
+                res.json({ message: result }); // Respond with received result
+                } catch (error) {
+                console.error("Error parsing response from internal API:", error);
+                res.status(500).json({ error: "Internal server error" });
+                }
+            });
+            });
+
+            req2.on('error', (error) => {
+            console.error("Error calling internal API:", error);
+            res.status(500).json({ error: "Internal server error" });
+            });
+
+            req2.write(postData);
+            req2.end();
+            break;
+  /*End of new area*/
+    default:
+        try {
+            console.log(req.body);
+            const message = req.body.message;
+            const result = await run(message);
+            console.log('Received message:', message);
+            console.log(result);
+            res.json({ message: result });
+        } catch (error) {
+            console.error("Error occurred in API control endpoint:", error);
+            res.status(500).json({ error: "Internal server error" });
+        }
     }
 });
 
