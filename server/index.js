@@ -23,11 +23,12 @@ app.post('/api/control', async (req, res) => {
     const message= req.body.message;
     console.log(message);
     switch(message){
+    /*New Area*/
         case "describe":
         case "lidar":
         case "find": 
-    /*New Area*/
     // Option 1: Using URL object (more readable)
+            console.log("Calling raspberry pi API");
             const apiUrl = new URL('http://192.168.137.223:8080/api/control'); // Assuming your internal API is http (change to https if necessary)
 
             // Option 2: Using string concatenation (more concise)
@@ -36,14 +37,14 @@ app.post('/api/control', async (req, res) => {
             const postData = JSON.stringify({ message }); // Prepare data to send
 
             const options = {
-            hostname: apiUrl.hostname,
-            port: apiUrl.port,
-            path: apiUrl.pathname,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json', // Set appropriate header
-                'Content-Length': postData.length
-            }
+                hostname: apiUrl.hostname,
+                port: apiUrl.port,
+                path: apiUrl.pathname,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Set appropriate header
+                    'Content-Length': postData.length
+                }
             };
 
             const req2 = https.request(options, (response) => {
@@ -73,7 +74,7 @@ app.post('/api/control', async (req, res) => {
             req2.write(postData);
             req2.end();
             break;
-  /*End of new area*/
+    /*End of new area*/
         /* These cases are handled in the Angular Typescript....
         case "maps":
             //maps code call abdo .....
