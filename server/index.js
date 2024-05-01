@@ -3,24 +3,14 @@ const express = require('express');
 const cors = require("cors");
 const multer = require('multer');
 const { spawn } = require('child_process');
-const https = require('https')
 const Tesseract =require("tesseract.js");
-
+const axios =require("axios")
 const app = express();
-// const corsOptions = {
-//     origin: `https://${process.env.ANGULAR_KEY||'*'}`,
-//      // Update with your Angular app URL
-//     optionsSuccessStatus: 200,
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,            // enable set cookie
-//     allowedHeaders: "*"
-// };
 
 app.use(cors());
-//app.options('*', cors(corsOptions));
 app.use(express.json());
 
-app.post('/api/control', async (req, res) => {
+app.post('/api/control', async (req, response) => {
     const message= req.body.message;
     console.log(message);
     switch(message){
@@ -28,53 +18,16 @@ app.post('/api/control', async (req, res) => {
         case "describe":
         case "lidar":
         case "find": 
-    // Option 1: Using URL object (more readable)
-            console.log("Calling raspberry pi API");
-            const apiUrl = new URL('http://192.168.137.223:8080/api/control'); // Assuming your internal API is http (change to https if necessary)
-
-            // Option 2: Using string concatenation (more concise)
-            //const apiUrl = 'http://192.168.137.223:8080/api/control';
-
-            const postData = JSON.stringify({ message }); // Prepare data to send
-
-            const options = {
-                hostname: apiUrl.hostname,
-                port: apiUrl.port,
-                path: apiUrl.pathname,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json', // Set appropriate header
-                    'Content-Length': postData.length
-                },
-                minVersion: 'TLSv1'
-            };
-
-            const req2 = https.request(options, (response) => {
-            let responseData = '';
-            response.on('data', (chunk) => {
-                responseData += chunk;
+            axios.post("http://192.168.137.223:8080/api/data",{
+                message: message
+            }).then(res =>{
+                console.log(res.data);
+                response.json(res.data);
+            })
+            .catch((error)=>{
+            console.log(error);
             });
-
-            response.on('end', () => {
-                try {
-                const result = JSON.parse(responseData);
-                console.log('Received message:', message);
-                console.log(result);
-                res.json({ message: result }); // Respond with received result
-                } catch (error) {
-                console.error("Error parsing response from internal API:", error);
-                res.status(500).json({ error: "Internal server error" });
-                }
-            });
-            });
-
-            req2.on('error', (error) => {
-            console.error("Error calling internal API:", error);
-            res.status(500).json({ error: "Internal server error" });
-            });
-
-            req2.write(postData);
-            req2.end();
+              console.log("message sent succesfully ")
             break;
     /*End of new area*/
         /* These cases are handled in the Angular Typescript....
@@ -95,10 +48,10 @@ app.post('/api/control', async (req, res) => {
                 const result = await run(message);
                 console.log('Received message:', message);
                 console.log(result);
-                res.json({ message: result });
+                response.json({ message: result });
             } catch (error) {
                 console.error("Error occurred in API control endpoint:", error);
-                res.status(500).json({ error: "Internal server error" });
+                response.status(500).json({ error: "Internal server error" });
             }
     }
 });
@@ -137,3 +90,4 @@ app.get('/',(req,res)=>{
 app.listen(process.env.PORT || 3002, function () {
     console.log("connected");
 });
+
